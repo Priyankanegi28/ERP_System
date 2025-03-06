@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/student_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="profile-section">
+                <img src="student_profile.png" alt="Profile Picture" class="profile-img">
+                <h2>Student Name</h2>
+            </div>
+            <ul class="nav-links">
+                <li><div class="nav-link active" onclick="showSection('dashboard')"><span>Dashboard</span></div></li>
+                <li><div class="nav-link" onclick="showSection('my-timetable')"><span>My Timetable</span></div></li>
+                    
+                <li class="attendance-dropdown">
+                    <div class="nav-link" onclick="showSection('view-attendance')"><span>Attendance</span></div>
+
+                </li>
+                <li class="assignment-section">
+                    <div class="nav-link" onclick="showSection('assignments')"><span>Assignments</span></div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section">
+                <h1>Welcome to the Student Dashboard</h1>
+                <!-- Cards on the Dashboard -->
+                <div class="card-section">
+                    <div class="card blue"onclick="toggleSection('student-details-section')">
+                        <i class="fas fa-chalkboard"></i>
+                        <h3>Student Details</h3>
+                        <hr class="divider">
+                        <p>View your details</p>
+                    </div>  
+                    <div class="card green" onclick="toggleSection('faculty-details-section')">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>faculty</h3>
+                        <hr class="divider">
+                        <p>Check your faculty</p>
+                    </div>
+                    <div class="card pink" onclick="toggleSection('notices-section')">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Recent Notices</h3>
+                        <hr class="divider">
+                        <p>View Notices</p>
+                    </div>
+
+                </div>
+                                 <!-- Student Details Section (Initially Hidden) -->
+                <div id="student-details-section" class="section" style="display: none;">
+                    <div class="student-details-container">
+                        <div class="details-box">
+                            <h3>Personal Details</h3>
+                            <p>Student Name: <input type="text" id="studentName" disabled></p>
+                            <p>Father Name: <input type="text" id="fatherName" disabled></p>
+                            <p>Mother Name: <input type="text" id="motherName" disabled></p>
+                            <p>Gender: <input type="text" id="gender" disabled></p>
+                            <p>Student Aadhar: <input type="text" id="aadhar" disabled></p>
+                        </div>
+                        <div class="details-box">
+                            <h3>Contact Details</h3>
+                            <p>Hosteller/Dayscholar: <input type="text" id="hostellerDayscholar" disabled></p>
+                            <p>Student Phone: <input type="text" id="studentPhone" disabled></p>
+                            <p>Parent Phone: <input type="text" id="parentPhone" disabled></p>
+                            <p>Student Email: <input type="text" id="studentEmail" disabled></p>
+                            <p>Address: <textarea id="address" disabled></textarea></p>
+                        </div>
+                        <div class="details-box">
+                            <h3>Academic Details</h3>
+                            <p>Programme: <input type="text" id="programme" disabled></p>
+                            <p>Present Class: <input type="text" id="presentClass" disabled></p>
+                            <p>Year of Admission: <input type="text" id="yearOfAdmission" disabled></p>
+                        </div>
+                    </div>
+                </div>
+                  <!-- Faculty Details Section (Initially Hidden) -->
+                    <div id="faculty-details-section" class="section" style="display: none;">
+                        <div class="faculty-details-container">
+                            <div class="details-box">
+                                <h3>Faculty Details</h3>
+                                <p>Faculty Name: <input type="text" id="facultyName" disabled></p>
+                                <p>Department: <input type="text" id="facultyDepartment" disabled></p>
+                                <p>Contact: <input type="text" id="facultyContact" disabled></p>
+                                <!-- Add more faculty details if necessary -->
+                            </div>
+                        </div>
+                    </div>
+
+                   <!-- Notices Section (Initially Hidden) -->
+                <div id="notices-section" class="section" style="display: none;">
+                    <div class="notices-container">
+                        <h3>Notices</h3>
+                        <ul id="noticesList">
+                            <li onclick="toggleNoticeDetails(this)">
+                                <span>Notice Title 1</span>
+                                <div class="notice-details" style="display: none;">
+                                    <p><strong>Date:</strong> 2024-10-08</p>
+                                    <p>This is the detailed content of Notice 1.</p>
+                                </div>
+                            </li>
+                            <li onclick="toggleNoticeDetails(this)">
+                                <span>Notice Title 2</span>
+                                <div class="notice-details" style="display: none;">
+                                    <p><strong>Date:</strong> 2024-10-09</p>
+                                    <p>This is the detailed content of Notice 2.</p>
+                                </div>
+                            </li>
+                            <li onclick="toggleNoticeDetails(this)">
+                                <span>Notice Title 3</span>
+                                <div class="notice-details" style="display: none;">
+                                    <p><strong>Date:</strong> 2024-10-10</p>
+                                    <p>This is the detailed content of Notice 3.</p>
+                                </div>
+                            </li>
+                            <!-- Add more notices as needed -->
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- My Timetable Section -->
+            <div id="my-timetable" class="section" style="display:none;">
+                <h1>My Timetable</h1>
+                <p>Here is your class timetable:</p><br>
+                <!-- Cards for Timetable and Class Info -->
+                <div class="card-section class-schedule-cards">
+                    <div class="card yellow" id="schedule-card" onclick="showSchedule()">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Class Schedule</h3>
+                    </div>
+                    <div class="card red" id="class-info-card" onclick="showHolidays()">
+                        <i class="fas fa-book"></i>
+                        <h3>Upcoming Holidays</h3>
+                    </div>
+                </div>
+                <!-- Schedule section (initially hidden) -->
+                <div id="schedule-timing" class="schedule-timing full-width" style="display: none;">
+                    <!-- Schedule details will be populated here -->
+                </div>
+                <!-- Holiday Information Section (initially hidden) -->
+                <div id="holiday-info" class="holiday-info" style="display: none;">
+                    <p>List of Holidays :</p><br>
+                    <ul><b>
+                        <li><span class="festival-name">Republic Day</span><span class="date">January 26</span></li>
+                        <li><span class="festival-name">Maha Shivaratri</span><span class="date">March 8</span></li>
+                        <li><span class="festival-name">Holi</span><span class="date">March 25</span></li>
+                        <li><span class="festival-name">Dr. Ambedkar Jayanti</span><span class="date">April 14</span></li>
+                        <li><span class="festival-name">Ram Navami</span><span class="date">April 15</span></li>
+                        <li><span class="festival-name">Mahavir Jayanti</span><span class="date">April 21</span></li>
+                        <li><span class="festival-name">Good Friday</span><span class="date">April 22</span></li>
+                        <li><span class="festival-name">Labor Day</span><span class="date">May 1</span></li>
+                        <li><span class="festival-name">Buddha Purnima</span><span class="date">May 23</span></li>
+                        <li><span class="festival-name">Independence Day</span><span class="date">August 15</span></li>
+                        <li><span class="festival-name">Raksha Bandhan</span><span class="date">August 19</span></li>
+                        <li><span class="festival-name">Ganesh Chaturthi</span><span class="date">September 16</span></li>
+                        <li><span class="festival-name">Gandhi Jayanti</span><span class="date">October 2</span></li>
+                        <li><span class="festival-name">Dussehra</span><span class="date">October 13</span></li>
+                        <li><span class="festival-name">Karva Chauth</span><span class="date">October 20</span></li>
+                        <li><span class="festival-name">Diwali</span><span class="date">November 1</span></li>
+                        <li><span class="festival-name">Bhai Dooj</span><span class="date">November 15</span></li>
+                        <li><span class="festival-name">Guru Nanak Jayanti</span><span class="date">November 23</span></li>
+                        <li><span class="festival-name">Christmas Day</span><span class="date">December 25</span></li></b>
+                    </ul>
+                </div>
+            </div>
+
+             <div id="view-attendance" class="section" style="display:none;">
+        <h1>Your Attendance Record</h1>
+        <div class="table-container">
+            <table class="attendance-table">
+                <thead>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th>Subject Name</th>
+                        <th>Classes Held</th>
+                        <th>Classes Attended</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody id="attendance-body">
+                    <!-- Rows will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+         <!-- Assignments Section -->
+            <div id="assignments" class="section" style="display:none;">
+                <h1>Assignments</h1>
+                <div class="card2-section">
+                    <!-- Example Assignment 1 -->
+                    <div class="assignment-card">
+                        <h3>Assignment 1: Project Proposal</h3>
+                        <p class="assignment-description">Submit your project proposal document detailing your project's objectives, methodology, and expected outcomes.</p>
+                        <div class="icon-group">
+                            <a href="path_to_assignment_file_1.pdf" download>
+                                <i class="fas fa-download" title="Download Assignment"></i>
+                            </a>
+                            <i class="fas fa-upload" onclick="triggerFileUpload('Assignment 1')" title="Upload Answer"></i>
+                        </div>
+                        <div class="submission-status" id="status-Assignment 1" style="display:none;">
+                            <p>Assignment submitted: <span id="submitted-file-Assignment 1"></span></p>
+                            <button class="delete-file-btn" onclick="deleteFile('Assignment 1')">Delete File</button>
+                        </div>
+                    </div>
+
+                    <!-- Example Assignment 2 -->
+                    <div class="assignment-card">
+                        <h3>Assignment 2: Ethical Hacking</h3>
+                        <p class="assignment-description">Prepare a literature review on a topic of your choice relevant to our course materials.</p>
+                        <div class="icon-group">
+                            <a href="path_to_assignment_file_2.pdf" download>
+                                <i class="fas fa-download" title="Download Assignment"></i>
+                            </a>
+                            <i class="fas fa-upload" onclick="triggerFileUpload('Assignment 2')" title="Upload Answer"></i>
+                        </div>
+                        <div class="submission-status" id="status-Assignment 2" style="display:none;">
+                            <p>Assignment submitted: <span id="submitted-file-Assignment 2"></span></p>
+                            <button class="delete-file-btn" onclick="deleteFile('Assignment 2')">Delete File</button>
+                        </div>
+                    </div>
+
+                    <!-- Example Assignment 3 -->
+                    <div class="assignment-card">
+                        <h3>Assignment 3: Adhoc</h3>
+                        <p class="assignment-description">Conduct a data analysis project using the datasets provided in class.</p>
+                        <div class="icon-group">
+                            <a href="path_to_assignment_file_3.pdf" download>
+                                <i class="fas fa-download" title="Download Assignment"></i>
+                            </a>
+                            <i class="fas fa-upload" onclick="triggerFileUpload('Assignment 3')" title="Upload Answer"></i>
+                        </div>
+                        <div class="submission-status" id="status-Assignment 3" style="display:none;">
+                            <p>Assignment submitted: <span id="submitted-file-Assignment 3"></span></p>
+                            <button class="delete-file-btn" onclick="deleteFile('Assignment 3')">Delete File</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+       <!-- Logout Section -->
+<div class="logout-section">
+    <i id="notification-btn" class="notification-icon fas fa-bell" onclick="toggleNotificationSidebar()"></i>
+    <i id="logout-btn" class="logout-icon fas fa-user-circle" onclick="toggleLogoutDropdown()"></i>
+
+    <!-- Notification Sidebar -->
+<div id="notification-sidebar" class="notification-sidebar">
+    <h4>Notifications</h4>
+    <hr class="divider">
+    <ul>
+        <li>New Assignment Submitted</li>
+        <li>Attendance Report Updated</li>
+        <li>Class Canceled</li>
+    </ul>
+</div>
+
+
+    <!-- Logout Dropdown -->
+    <div id="logout-dropdown" class="logout-dropdown">
+        <ul>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
+    <script src="/static/js/student_dashboard.js"></script>
+</body>
+</html>

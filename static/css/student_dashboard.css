@@ -1,0 +1,773 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Body and Background */
+body {
+    background-color: #f4f7fc;
+    cursor: default;
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(145deg, #404565, #375a7f); /* Gradient for depth */
+    color: #ffffff;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1); /* Soft shadow on sidebar */
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 10px;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for profile image */
+}
+
+/* Sidebar Navigation Links */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    flex-grow: 1; /* Fills the remaining space */
+    cursor: pointer;
+}
+
+.nav-links li {
+    margin: 20px 0;
+}
+
+/* Update for white text */
+.nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #ffffff; /* Changed text color to white */
+    font-weight: 500;
+    position: relative; /* Make the parent relative for the child absolute positioning */
+}
+
+.nav-link:hover{
+    background-color: #526187;
+    border-radius: 8px;
+    transform: translateX(5px);
+}
+.nav-link.active {
+    transform: none;
+}
+
+
+
+/* Style for the dropdown */
+.dropdown {
+    color: black;
+    display: none;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown a {
+    padding: 10px ;
+    text-decoration: none;
+    color: black;
+    display: block; /* Ensures links take the full width */
+    border-bottom: 1px solid #f0f0f0;
+
+}
+
+.dropdown a:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
+.dropdown a:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+/* Active dropdown visibility */
+.dropdown.active {
+    display: flex;
+}
+
+
+/* Main Content Styling */
+.main-content {
+    margin-left: 260px;
+    padding: 40px;
+    flex-grow: 1;
+    background-color: #ffffff;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Section Headings */
+.section h1 {
+    color: #375a7f;
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0e4ec;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+    }
+    .main-content {
+        margin-left: 220px;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 180px;
+    }
+    .main-content {
+        margin-left: 180px;
+    }
+}
+ 
+/* Main Content */
+.main-content {
+    padding: 20px;
+}
+
+/* Section Header */
+.section h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+
+
+
+/*new*/
+
+/* Card Section */
+.card-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* General Card Style */
+.card {
+    cursor: pointer;
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+}
+
+/* Card Icon Style */
+.card i {
+    font-size: 25px; /* Increased size for icons */
+    margin-bottom: 5px; /* Increase bottom margin for spacing */
+    color: #333; /* Default icon color */
+}
+
+/* Card Title */
+.card h3 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333; /* Default title color */
+}
+
+/* Card Content */
+.card p {
+    font-size: 18px;
+    color: #555; /* Default text color */
+}
+
+/* Hover Effects */
+.card.green:hover {
+    transform: translateY(-5px);
+    border-color: #1E90FF; /* Dodger Blue border on hover */
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Dodger Blue shadow effect */
+}
+
+.card.pink:hover {
+    transform: translateY(-5px);
+    border-color: #1E90FF; /* Dodger Blue border on hover */
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Dodger Blue shadow effect */
+}
+
+.card.blue:hover {
+    transform: translateY(-5px);
+    color: black;
+    border-color: #1E90FF; /* Dodger Blue border on hover */
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Dodger Blue shadow effect */
+}
+/* Student Details Section */
+.student-details-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.details-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+}
+
+.details-box h3 {
+    margin-bottom: 10px;
+}
+
+.details-box p {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.details-box input, .details-box textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Notices List Style */
+#noticesList {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+}
+
+#noticesList li {
+    border: 1px solid #ccc; /* Border for each notice */
+    margin: 5px 0; /* Spacing between notices */
+    padding: 10px; /* Padding inside each notice */
+    cursor: pointer; /* Change cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+}
+
+#noticesList li:hover {
+    background-color: #f1f1f1; /* Darker background on hover */
+}
+
+.notice-details {
+    margin-top: 5px; /* Spacing above the details */
+    padding: 10px;
+    background-color: #e7f3fe; /* Light blue background for details */
+    border-left: 4px solid #2196F3; /* Blue border on the left */
+}
+
+
+
+/* Horizontal Line Divider */
+.divider {
+    border: none; /* Remove default border */
+    height: 1px; /* Set height of the line */
+    background-color: #ccc; /* Line color */
+    margin: 5px 0; /* Add spacing above and below the line */
+    width: 100%; /* Full width of the container */
+}
+
+
+/*logout*/
+/* Logout Icon */
+.logout-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer; /* Add cursor pointer for interactivity */
+}
+
+/* Dropdown Menu Styling */
+.logout-dropdown {
+    position: absolute;
+    top: 50px; /* Position it below the icon */
+    right: 0; /* Align the dropdown with the right side */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    display: none; /* Initially hidden */
+    z-index: 1000;
+    width: 150px; /* Adjust the width as needed */
+}
+
+.logout-dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.logout-dropdown li {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+   
+}
+
+.logout-dropdown li:last-child {
+    border-bottom: none;
+}
+
+.logout-dropdown li a {
+    text-decoration: none;
+    color: #34495e;
+    display: block;
+}
+
+.logout-dropdown li:hover {
+    background-color: #f4f7fc;
+}
+
+/* Show Dropdown */
+.show-dropdown {
+    display: block;
+}
+
+/* Notification Icon */
+.notification-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    padding-right: 40px;
+    color: black; /* Icon color */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.notification-icon:hover {
+    color: #007BFF; /* Darker color on hover */
+}
+
+/* Sidebar for notifications */
+.notification-sidebar {
+    position: fixed; /* Fixed position */
+    top: 0; /* Stick to top */
+    right: -300px; /* Hidden off-screen */
+    width: 300px; /* Width of the sidebar */
+    height: 100%; /* Full height */
+    background-color: #ffffff; /* White background */
+    border-left: 1px solid #ddd; /* Subtle left border */
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    transition: right 0.3s ease; /* Smooth transition */
+    z-index: 1000;
+    padding: 20px; /* Padding for spacing */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Arrange children in a column */
+    justify-content: space-between; /* Space items evenly */
+}
+
+/* Show sidebar when active */
+.notification-sidebar.active {
+    right: 0; /* Move into view */
+}
+
+/* Sidebar title */
+.notification-sidebar h4 {
+    font-family: 'Arial', sans-serif; /* Clean font */
+    font-size: 1.5em; /* Larger title */
+    margin-bottom: 15px; /* Space below title */
+    color: #333; /* Darker color for title */
+}
+
+/* Divider */
+.notification-sidebar .divider {
+    margin: 10px 0; /* Margin for spacing */
+    border: none; /* Remove default border */
+    height: 2px; /* Height of divider */
+    background-color: #4A90E2; /* Divider color */
+}
+
+/* Notification list */
+.notification-sidebar ul {
+    list-style-type: none; /* No bullets */
+    padding: 0; /* Reset padding */
+    flex-grow: 1; /* Allow the list to grow */
+}
+
+/* Notification items */
+.notification-sidebar ul li {
+    padding: 10px 0; /* Padding for list items */
+    border-bottom: 1px solid #ddd; /* Subtle border between items */
+    color: #555; /* Text color */
+    transition: background 0.3s ease; /* Smooth background transition */
+}
+
+/* Hover effect for notification items */
+.notification-sidebar ul li:hover {
+    background-color: #e8f4fd; /* Light background on hover */
+    color: #333; /* Darker text on hover */
+}
+
+
+
+/* Card Section for Class Schedule */
+.class-schedule-cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Ensure cards have equal height */
+    gap: 20px;
+}
+
+/* Ensure both cards have equal width and height */
+.class-schedule-cards .card {
+    width: 48%; /* Make both cards take up 48% of the container */
+    height: auto; /* Ensure both cards have equal height */
+}
+
+/* Full width for the schedule timing section */
+.full-width {
+    width: 100%; /* Make the schedule occupy the full width of the container */
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+.schedule-timing ul {
+    list-style: none;
+    padding: 0;
+}
+
+.schedule-timing ul li {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #555;
+}
+
+.class-schedule-cards .card.yellow:hover {
+    transform: translateY(-5px);
+}
+.class-schedule-cards .card.red:hover {
+    transform: translateY(-5px);
+   
+}
+
+/* Holiday Section Styling */
+.holiday-info {
+    background-color: #ffffff; /* Pure white background for clean contrast */
+    padding: 25px; /* Padding inside the box */
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+    margin: 0; /* Remove outer margins */
+    width: 100%; /* Full viewport width */
+    max-width: 800px; /* Set a max width for better layout */
+    position: relative; /* Ensure proper positioning */
+    left: 50%; /* Center the box */
+    transform: translateX(-50%); /* Adjust to center */
+    margin-top: 30px; /* Margin above */
+
+}
+
+.holiday-info p {
+    font-size: 24px; /* Larger heading */
+    font-weight: 600;
+    color: #333; /* Darker color for heading */
+    margin-bottom: 20px;
+    text-align: center; /* Centered title */
+    border-bottom: 2px solid #1E90FF; /* Blue line below heading */
+    padding-bottom: 10px;
+}
+
+/* Holiday List Styling */
+.holiday-info ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+
+.holiday-info ul li {
+    font-size: 18px; /* Readable size */
+    color: #333; /* Darker text for contrast */
+    background-color: #f5f5f5; /* Light grey background */
+    padding: 15px 20px; /* Adequate padding */
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for each item */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center items vertically */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.holiday-info ul li:nth-child(even) {
+    background-color: #A7C7E7; /* Light blue for alternating items */
+}
+.holiday-info ul li:nth-child(odd) {
+    background-color: #B6D0E2; /* Light blue for alternating items */
+}
+/* Icon styling for holiday list */
+.holiday-info ul li::before {
+    content: "\1F4C6"; /* Calendar emoji for each holiday item */
+    margin-right: 10px;
+    font-size: 22px;
+    color: #1E90FF; /* Dodger blue color for the icon */
+}
+
+/* Festival Name Styling */
+.festival-name {
+    flex-grow: 1; /* Allow the festival name to grow and fill available space */
+}
+
+/* Hover Effect */
+.holiday-info ul li:hover {
+    background-color: #d9edf7; /* Soft blue on hover */
+    transform: translateY(-5px); /* Lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+    cursor: pointer;
+}
+
+/* List Date Styling */
+.date {
+    font-weight: bold;
+    color: #555; /* Slightly darker color for date */
+    font-size: 16px;
+    text-align: right; /* Align the date to the right */
+}
+
+
+/*/time table styling below*/
+
+/* Timetable Header Styling */
+.timetable-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.timetable-header h1,
+.timetable-header h2,
+.timetable-header h3 {
+    margin: 5px 0;
+}
+
+.timetable-header h1 {
+    font-size: 2em;
+    color: #2c3e50;
+}
+
+.timetable-header h2 {
+    font-size: 1.5em;
+    color: #34495e;
+}
+
+.timetable-header h3 {
+    font-size: 1.2em;
+    color: #375a7f;
+    border-bottom: 2px solid #e0e4ec; /* Subtle border below the header */
+    padding-bottom: 10px;
+}
+
+/* Timetable Container Styling */
+.timetable-container {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f7fc;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+}
+
+/* Timetable Table Styling */
+.timetable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1.1em;
+    min-width: 400px;
+    text-align: center;
+}
+
+.timetable thead {
+    background-color: #375a7f;
+    color: white;
+}
+
+.timetable th,
+.timetable td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+/* Alternate Row Colors */
+.timetable tbody tr:nth-child(even) {
+    background-color: #f4f7fc;
+}
+
+/* Hover Effect on Rows */
+.timetable tbody tr:hover {
+    background-color: #e1e8f0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Responsive Table Styling */
+@media screen and (max-width: 768px) {
+    .timetable th, .timetable td {
+        padding: 10px 5px;
+    }
+    
+    .timetable-container {
+        padding: 15px;
+    }
+    
+    .timetable-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .timetable-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    .timetable-header h3 {
+        font-size: 1.2rem;
+    }
+}
+/* Assignments Section Styles */
+.card2-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between assignment cards */
+}
+
+.assignment-card {
+    background-color: #f9f9f9; /* Light gray background for cards */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+    position: relative;
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.assignment-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.assignment-description {
+    font-size: 14px; /* Smaller font size for description */
+    color: #555; /* Dark gray color for text */
+    margin: 10px 0; /* Spacing around the description */
+}
+
+.icon-group {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.icon-group i {
+    font-size: 1.5rem; /* Increase icon size */
+    margin-left: 15px; /* Space between icons */
+    color: #3498db; /* Icon color */
+    cursor: pointer;
+    transition: color 0.3s; /* Smooth color change on hover */
+}
+
+.icon-group i:hover {
+    color: #2980b9; /* Darker shade on hover */
+}
+
+.submission-status {
+    margin-top: 15px; /* Spacing above the status */
+    color: #27ae60; /* Green color for success messages */
+}
+
+.delete-file-btn {
+    background-color: #e74c3c; /* Red background color for delete button */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 8px 12px; /* Padding for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background color change */
+}
+
+.delete-file-btn:hover {
+    background-color: #c0392b; /* Darker button color on hover */
+}
+
+//attendance 
+.table-container {
+    overflow-x: auto; /* Allow horizontal scroll on smaller screens */
+}
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden; /* Ensure rounded corners are visible */
+}
+
+.attendance-table th,
+.attendance-table td {
+    border: 1px solid #ddd;
+    padding: 12px; /* Increased padding for better readability */
+    text-align: left;
+}
+
+.attendance-table th {
+    background-color: #3498db; /* Header background color */
+    color: white; /* White text for headers */
+    font-weight: bold; /* Bold font for header */
+}
+
+.attendance-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light gray for even rows */
+}
+
+.attendance-table tr:hover {
+    background-color: #e6f7ff; /* Light blue on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.attendance-table td {
+    color: #555; /* Dark gray for table data */
+}
+
+@media (max-width: 600px) {
+    .attendance-table th, .attendance-table td {
+        padding: 8px; /* Smaller padding for mobile view */
+    }
+}

@@ -1,0 +1,114 @@
+/* Background settings */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-end; /* Aligns the login box to the right */
+    align-items: center;
+    height: 100%;
+    padding-right: 5%; /* Adjust distance from the right corner */
+}
+
+.login-box {
+    background: rgba(0, 0, 0, 0.7); /* Black transparent background */
+    padding: 40px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    position: relative;
+    text-align: center;
+}
+
+.logo {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+h4 {
+    margin-bottom: 20px;
+    color: #fff; /* Ensure the title stands out */
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 50px; /* Rounded input fields */
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.input-group input::placeholder {
+    color: #999; /* Placeholder text color */
+}
+
+.input-group input:focus {
+    outline: none;
+    background-color: #fff;
+}
+
+/* Oval select dropdown */
+.input-group select {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    margin-top: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+    appearance: none;
+    outline: none;
+    background-image: url('../images/dropdown-arrow.png');
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    padding-right: 40px;
+}
+
+.input-group select:hover {
+    background-color: #eee; /* Hover effect for dropdown */
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 50px; /* Rounded button */
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.forgot-id {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-id:hover {
+    text-decoration: underline;
+}

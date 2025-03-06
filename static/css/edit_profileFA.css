@@ -1,0 +1,122 @@
+/* General body and container styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eaeaea; /* Light grey background */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Card styling */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+
+
+.card-header h3 {
+    margin: 0;
+    padding-bottom: 10px; /* Add space between heading and details */
+}
+
+/* Edit button only in contact details */
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #45a049;
+}
+
+/* Profile card specific */
+.profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-info h2 {
+    margin: 0;
+}
+
+.profile-info p {
+    margin: 5px 0;
+}
+
+/* Input row styling */
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-row label {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.input-row input {
+    flex: 2;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-right: 10px; /* Add space between inputs */
+}
+
+.input-row input:last-child {
+    margin-right: 0; /* Remove margin for the last item in the row */
+}
+
+.input-row input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* Ensure consistent input size */
+.input-row input[type="text"],
+.input-row input[type="email"] {
+    width: calc(100% - 20px); /* Adjust based on padding and margins */
+}
+
+/* Add spacing between first and second label inputs */
+.input-row label + input {
+    margin-left: 15px;
+}

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/faculty_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="profile-section">
+                <img src="teacher_profile.png" alt="Profile Picture" class="profile-img">
+                <h2>Teacher Name</h2>
+            </div>
+            <ul class="nav-links">
+                <li><div class="nav-link active" onclick="showSection('dashboard')"><span>Dashboard</span></div></li>
+                <li><div class="nav-link" onclick="showSection('class-schedule')"><span>Class Schedule</span></div></li>
+                    
+                <li class="attendance-dropdown">
+                    <div class="nav-link" onclick="toggleDropdown('attendanceDropdown')"><span>Attendance Management</span></div>
+                    <div class="dropdown" id="attendanceDropdown">
+                        <div onclick="showSection('mark-attendance')"><span>Mark Attendance</span></div>
+                        <div onclick="showSection('view-attendance')"><span>View Attendance Record</span></div>
+                    </div>
+                </li>
+                <li class="assignment-dropdown">
+                    <div class="nav-link" onclick="toggleDropdown('assignmentDropdown')"><span>Assignment Management</span></div>
+                    <div class="dropdown" id="assignmentDropdown">
+                        <div onclick="showSection('create-assignments')"><span>Create Assignments</span></div>
+                        <div onclick="showSection('view-submissions')"><span>View Submissions</span></div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section">
+                <h1>Welcome to the Dashboard</h1>
+                <!-- Cards on the Dashboard -->
+                <div class="card-section">
+                    <div class="card blue">
+                        <i class="fas fa-chalkboard"></i>
+                        <h3>Manage Classes</h3>
+                        <hr class="divider">
+                        <p>Overview of class schedules</p>
+                    </div>
+                    <div class="card green">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Manage Attendance</h3>
+                        <hr class="divider">
+                        <p>Mark and track student attendance</p>
+                    </div>
+                    <div class="card pink">
+                        <i class="fas fa-tasks"></i>
+                        <h3>Assignments</h3>
+                        <hr class="divider">
+                        <p>Create, assign, and review homework</p>
+                    </div>
+                </div>
+
+                <!-- Notice and Upcoming Assignments -->
+                <div class="dashboard-extra">
+                    <div class="extra-section">
+                        <i class="fas fa-bell"></i>
+                        <h3>Recent Notifications</h3>
+                        <hr class="divider">
+                        <ul class="notice-updates">
+                            <li>New Assignment Submitted</li>
+                            <li>Attendance Report Updated</li>
+                            <li>Class Canceled</li>
+                        </ul>
+                    </div>
+                    <div class="extra-section">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Recent Activities</h3>
+                        <hr class="divider">
+                        <ul>
+                            <li>Graded 5 Assignments</li>
+                            <li>Updated Class Schedule</li>
+                            <li>Sent Feedback</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Class Schedule Section -->
+            <div id="class-schedule" class="section" style="display:none;">
+                <h1>Class Schedule</h1>
+                <p>Here is your class schedule:</p><br>
+                <!-- Cards for Class Information and Schedule -->
+                <div class="card-section class-schedule-cards">
+                    <div class="card red" id="class-info-card" onclick="showClassInfo()">
+                        <i class="fas fa-book"></i>
+                        <h3>Class Information</h3>
+                    </div>
+                    <div class="card yellow" id="schedule-card" onclick="showSchedule()">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Class Schedule</h3>
+                    </div>
+                </div>
+                <!-- Schedule section (initially hidden) -->
+                <div id="schedule-timing" class="schedule-timing full-width" style="display: none;">
+                    <!-- Schedule details will be populated here -->
+                </div>
+                 <!-- Class Information Section (initially hidden) -->
+                <div id="class-info" class="class-info full-width" style="display: none;">
+                    <p>To access the data for your class, simply click on the cards below:</p></h3><br><br>
+                    <div class="class-info-cards">
+                        <a href="path/to/year1-sem2.xlsx" target="_blank" class="class-card">
+                            <div class="card no-background">
+                                <h3>Year 1 (Sem 1)</h3>
+                            </div>
+                        </a>
+                        <a href="path/to/year1-sem2.xlsx" target="_blank" class="class-card">
+                            <div class="card no-background">
+                                <h3>Year 2 (Sem 3)</h3>
+                            </div>
+                        </a>
+                        <a href="path/to/year1-sem2.xlsx" target="_blank" class="class-card">
+                            <div class="card no-background">
+                                <h3>Year 3 (Sem 5)</h3>
+                            </div>
+                        </a>
+                        <a href="path/to/year1-sem2.xlsx" target="_blank" class="class-card">
+                            <div class="card no-background">
+                                <h3>Year 4 (Sem 7)</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Sections -->
+            <div id="mark-attendance" class="section" style="display:none";>
+    <h1>Mark Attendance</h1>
+    <div class="date-day">
+        <span id="current-date" class="date"></span>
+        <span id="current-day" class="day"></span>
+    </div>
+    <div class="card-section">
+        <div class="card" onclick="toggleClassInfo('class1')">
+            <h3>B.TECH,1 SEM<br>MATHEMATICS</h3>
+        </div>
+        <div class="card" onclick="toggleClassInfo('class2')">
+            <h3>B.TECH,CSE,3 SEM<br>DBMS</h3>
+        </div>
+        <div class="card" onclick="toggleClassInfo('class3')">
+            <h3>B.TECH,CSE,5 SEM<br>MACHINE LEARNING</h3>
+        </div>
+        <div class="card" onclick="toggleClassInfo('class4')">
+            <h3>B.TECH,CSE,7 SEM<br>ETHICAL HACKING</h3>
+        </div>
+    </div>
+
+    <!-- Class Information Table (hidden by default) -->
+    <div id="class1" class="class-info-table" style="display:none;">
+        <h3>Class 1 Attendance</h3>
+        <form id="attendance-form">
+        <table>
+            <thead>
+                <tr>
+                    <th>Present</th>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Day Scholar/Hosteller</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Student 1</td>
+                    <td>Father 1</td>
+                    <td>1234567890</td>
+                    <td>student1@example.com</td>
+                    <td>Day Scholar</td>
+                </tr>
+                <!-- More rows for Class 1 students -->
+            </tbody>
+        </table>
+        <button type="submit" class="submit-btn">Submit Attendance</button>
+        </form>
+    </div>
+
+    <div id="class2" class="class-info-table" style="display:none;">
+        <h3>Class 2 Attendance</h3>
+        <form id="attendance-form">
+        <table>
+            <thead>
+                <tr>
+                    <th>Present</th>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Day Scholar/Hosteller</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Student 2</td>
+                    <td>Father 2</td>
+                    <td>0987654321</td>
+                    <td>student2@example.com</td>
+                    <td>Hosteller</td>
+                </tr>
+                <!-- More rows for Class 2 students -->
+            </tbody>
+        </table>
+        <button type="submit" class="submit-btn">Submit Attendance</button>
+        </form>
+    </div>
+
+    <div id="class3" class="class-info-table" style="display:none;">
+        <h3>Class 3 Attendance</h3>
+        <form id="attendance-form">
+        <table>
+            <thead>
+                <tr>
+                    <th>Present</th>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Day Scholar/Hosteller</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Student 3</td>
+                    <td>Father 3</td>
+                    <td>1122334455</td>
+                    <td>student3@example.com</td>
+                    <td>Day Scholar</td>
+                </tr>
+                <!-- More rows for Class 3 students -->
+            </tbody>
+        </table>
+        <button type="submit" class="submit-btn">Submit Attendance</button>
+        </form>
+    </div>
+
+    <div id="class4" class="class-info-table" style="display:none;">
+        <h3>Class 4 Attendance</h3>
+        <form id="attendance-form">
+        <table>
+            <thead>
+                <tr>
+                    <th>Present</th>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Day Scholar/Hosteller</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Student 4</td>
+                    <td>Father 4</td>
+                    <td>5566778899</td>
+                    <td>student4@example.com</td>
+                    <td>Hosteller</td>
+                </tr>
+                <!-- More rows for Class 4 students -->
+            </tbody>
+        </table>
+        <button type="submit" class="submit-btn">Submit Attendance</button>
+        </form>
+    </div>
+</div>
+
+
+            <div id="view-attendance" class="section" style="display:none;">
+    <h1>View Attendance</h1>
+    
+    <!-- Cards Section -->
+    <div class="card-sectionn">
+        <div class="cardd" onclick="toggleViewClassInfo('viewClass1')">
+            <h3>B.TECH 1 SEM<br>MATHEMATICS</h3>
+        </div>
+        <div class="cardd" onclick="toggleViewClassInfo('viewClass2')">
+            <h3>B.TECH CSE 3 SEM<br>DBMS</h3>
+        </div>
+        <div class="cardd" onclick="toggleViewClassInfo('viewClass3')">
+            <h3>B.TECH CSE 5 SEM<br>MACHINE LEARNING</h3>
+        </div>
+        <div class="cardd" onclick="toggleViewClassInfo('viewClass4')">
+            <h3>B.TECH CSE 7 SEM<br>ETHICAL HACKING</h3>
+        </div>
+    </div>
+
+    <!-- Class Information Tables (hidden by default) -->
+    <div id="viewClass1" class="class-info-tablee" style="display:none;">
+         <div class="class-header">
+            <label for="date-class1"><i class="fa fa-calendar"></i> Select Date:</label>
+            <input type="date" id="date-class1" onchange="filterAttendanceByDate('viewClass1', this.value)">
+        </div><br>
+        <h3>B.TECH 1 SEM MATHEMATICS - Student Attendance</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Day Scholar/Hosteller</th>
+                    <th>Present/Absent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Student 1</td>
+                    <td>Father 1</td>
+                    <td>1234567890</td>
+                    <td>student1@example.com</td>
+                    <td>Day Scholar</td>
+                    <td>Present</td>
+                </tr>
+                <!-- More rows for Class 1 students -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="viewClass2" class="class-info-tablee" style="display:none;">
+         <div class="class-header">
+            <label for="date-class2"><i class="fa fa-calendar"></i> Select Date:</label>
+            <input type="date" id="date-class2" onchange="filterAttendanceByDate('viewClass2', this.value)">
+        </div><br>
+        <h3>B.TECH CSE 3 SEM DBMS - Student Attendance</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Day Scholar/Hosteller</th>
+                    <th>Present/Absent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Student 2</td>
+                    <td>Father 2</td>
+                    <td>0987654321</td>
+                    <td>student2@example.com</td>
+                    <td>Hosteller</td>
+                    <td>Absent</td>
+                </tr>
+                <!-- More rows for Class 2 students -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="viewClass3" class="class-info-tablee" style="display:none;">
+         <div class="class-header">
+            <label for="date-class3"><i class="fa fa-calendar"></i> Select Date:</label>
+            <input type="date" id="date-class3" onchange="filterAttendanceByDate('viewClass3', this.value)">
+        </div><br>
+        <h3>B.TECH CSE 5 SEM MACHINE LEARNING - Student Attendance</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Day Scholar/Hosteller</th>
+                    <th>Present/Absent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Student 3</td>
+                    <td>Father 3</td>
+                    <td>1122334455</td>
+                    <td>student3@example.com</td>
+                    <td>Day Scholar</td>
+                    <td>Present</td>
+                </tr>
+                <!-- More rows for Class 3 students -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="viewClass4" class="class-info-tablee" style="display:none;">
+         <div class="class-header">
+            <label for="date-class4"><i class="fa fa-calendar"></i> Select Date:</label>
+            <input type="date" id="date-class4" onchange="filterAttendanceByDate('viewClass4', this.value)">
+        </div><br>
+        <h3>B.TECH CSE 7 SEM ETHICAL HACKING - Student Attendance</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Day Scholar/Hosteller</th>
+                    <th>Present/Absent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Student 4</td>
+                    <td>Father 4</td>
+                    <td>5566778899</td>
+                    <td>student4@example.com</td>
+                    <td>Hosteller</td>
+                    <td>Absent</td>
+                </tr>
+                <!-- More rows for Class 4 students -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+            <div id="create-assignments" class="section" style="display:none;">
+                <h1>Create Assignments</h1>
+                <div class="card-section">
+                    <div class="card assignment-cardd">
+                        <i class="fas fa-file-upload"></i>
+                        <h3>Assignments</h3>
+                        <hr class="divider">
+                        <p>Upload assignments</p><br>
+                        <div class="icon-group">
+                            <i class="fas fa-upload"></i>
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </div>
+                    <div class="card past-assignment-card">
+                        <i class="fas fa-history"></i>
+                        <h3>Past Assignments</h3>
+                        <hr class="divider">
+                        <p>Review previous assignments</p><br>
+                        <div class="icon-group">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<div id="view-submissions" class="section" style="display:none;">
+    <h1>View Submissions</h1>
+    <div class="card-section">
+        <!-- Main Subject Cards -->
+        <div class="card subject-card" onclick="toggleAssignments('mathematics-assignments')">
+            <h3>B.TECH 1 SEM<br>Mathematics</h3>
+        </div>
+        <div class="card subject-card" onclick="toggleAssignments('dbms-assignments')">
+            <h3>B.TECH CSE 3 SEM<br>DBMS</h3>
+        </div>
+        <div class="card subject-card" onclick="toggleAssignments('machine-learning-assignments')">
+            <h3>B.TECH CSE 5 SEM<br>Machine Learning</h3>
+        </div>
+        <div class="card subject-card" onclick="toggleAssignments('ethical-hacking-assignments')">
+            <h3>B.TECH CSE 7 SEM<br>Ethical Hacking</h3>
+        </div>
+    </div>
+
+    <!-- Assignment Cards for Mathematics -->
+    <div id="mathematics-assignments" class="assignment-list" style="display:none;">
+        <p>These are the assignments of Mathematics:</p>
+        <div class="assignment-cards-row">
+            <div class="assignment-card" onclick="showStudentDetails('mathematics')">Assignment 1</div>
+            <div class="assignment-card" onclick="showStudentDetails('mathematics')">Assignment 2</div>
+            <div class="assignment-card" onclick="showStudentDetails('mathematics')">Assignment 3</div>
+            <div class="assignment-card" onclick="showStudentDetails('mathematics')">Assignment 4</div>
+            <div class="assignment-card" onclick="showStudentDetails('mathematics')">Assignment 5</div>
+        </div>
+        
+        <!-- Student Details for Mathematics -->
+        <table id="mathematics-student-details" class="student-details" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Course</th>
+                    <th>Semester</th>
+                    <th>Assignment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>Michael Doe</td>
+                    <td>BSc Mathematics</td>
+                    <td>5th</td>
+                    <td><a href="#" onclick="viewAssignment('john-doe-mathematics-assignment1.pdf')"><i class="fas fa-file-pdf"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>Robert Smith</td>
+                    <td>BSc Mathematics</td>
+                    <td>5th</td>
+                    <td><a href="#" onclick="viewAssignment('jane-smith-mathematics-assignment1.pdf')"><i class="fas fa-file-pdf"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Assignment Cards for DBMS -->
+    <div id="dbms-assignments" class="assignment-list" style="display:none;">
+        <p>These are the assignments of DBMS :</p>
+        <div class="assignment-cards-row">
+            <div class="assignment-card" onclick="showStudentDetails('dbms')">Assignment 1</div>
+            <div class="assignment-card" onclick="showStudentDetails('dbms')">Assignment 2</div>
+            <div class="assignment-card" onclick="showStudentDetails('dbms')">Assignment 3</div>
+            <div class="assignment-card" onclick="showStudentDetails('dbms')">Assignment 4</div>
+            <div class="assignment-card" onclick="showStudentDetails('dbms')">Assignment 5</div>
+        </div>
+        
+        <!-- Student Details for DBMS -->
+        <table id="dbms-student-details" class="student-details" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Course</th>
+                    <th>Semester</th>
+                    <th>Assignment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>Michael Doe</td>
+                    <td>BSc Computer Science</td>
+                    <td>5th</td>
+                    <td><a href="#" onclick="viewAssignment('john-doe-dbms-assignment1.pdf')"><i class="fas fa-file-pdf"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>Robert Smith</td>
+                    <td>BSc Computer Science</td>
+                    <td>5th</td>
+                    <td><a href="#" onclick="viewAssignment('jane-smith-dbms-assignment1.pdf')"><i class="fas fa-file-pdf"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Assignment Cards for Machine Learning -->
+    <div id="machine-learning-assignments" class="assignment-list" style="display:none;">
+                <p>These are the assignments of Machine Learning:</p>
+        <div class="assignment-cards-row">
+            <div class="assignment-card" onclick="showStudentDetails('machine-learning')">Assignment 1</div>
+            <div class="assignment-card" onclick="showStudentDetails('machine-learning')">Assignment 2</div>
+            <div class="assignment-card" onclick="showStudentDetails('machine-learning')">Assignment 3</div>
+            <div class="assignment-card" onclick="showStudentDetails('machine-learning')">Assignment 4</div>
+            <div class="assignment-card" onclick="showStudentDetails('machine-learning')">Assignment 5</div>
+        </div>
+        
+        <!-- Student Details for Machine Learning -->
+        <table id="machine-learning-student-details" class="student-details" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Course</th>
+                    <th>Semester</th>
+                    <th>Assignment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>Michael Doe</td>
+                    <td>BSc Artificial Intelligence</td>
+                    <td>5th</td>
+                    <td><a href="#" onclick="viewAssignment('john-doe-machine-learning-assignment1.pdf')"><i class="fas fa-file-pdf"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>Robert Smith</td>
+                    <td>BSc Artificial Intelligence</td>
+                    <td>5th</td>
+                    <td><a href="#" onclick="viewAssignment('jane-smith-machine-learning-assignment1.pdf')"><i class="fas fa-file-pdf"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Assignment Cards for Ethical Hacking -->
+    <div id="ethical-hacking-assignments" class="assignment-list" style="display:none;">
+        <p>These are the assignments of Ethical Hacking:</p>
+        <div class="assignment-cards-row">
+            <div class="assignment-card" onclick="showStudentDetails('ethical-hacking')">Assignment 1</div>
+            <div class="assignment-card" onclick="showStudentDetails('ethical-hacking')">Assignment 2</div>
+            <div class="assignment-card" onclick="showStudentDetails('ethical-hacking')">Assignment 3</div>
+            <div class="assignment-card" onclick="showStudentDetails('ethical-hacking')">Assignment 4</div>
+            <div class="assignment-card" onclick="showStudentDetails('ethical-hacking')">Assignment 5</div>
+        </div>
+        
+        <!-- Student Details for Ethical Hacking -->
+        <table id="ethical-hacking-student-details" class="student-details" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Father's Name</th>
+                    <th>Course</th>
+                    <th>Semester</th>
+                    <th>Assignment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John Doe</td>
+                    <td>Michael Doe</td>
+                    <td>BSc Cyber Security</td>
+                    <td>5th</td>
+                    <td><a href="#" onclick="viewAssignment('john-doe-ethical-hacking-assignment1.pdf')"><i class="fas fa-file-pdf"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>Robert Smith</td>
+                    <td>BSc Cyber Security</td>
+                    <td>5th</td>
+                    <td><a href="#" onclick="viewAssignment('jane-smith-ethical-hacking-assignment1.pdf')"><i class="fas fa-file-pdf"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        </div>
+    </div>
+
+    <!-- Logout Section -->
+<div class="logout-section">
+    <i id="notification-btn" class="notification-icon fas fa-bell" onclick="toggleNotificationSidebar()"></i>
+    <i id="logout-btn" class="logout-icon fas fa-user-circle" onclick="toggleLogoutDropdown()"></i>
+
+    <!-- Logout Dropdown -->
+    <div id="logout-dropdown" class="logout-dropdown">
+        <ul>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Notification Sidebar -->
+<div id="notification-sidebar" class="notification-sidebar">
+    <h4>Notifications</h4>
+    <hr class="divider">
+    <ul>
+        <li>New Assignment Submitted</li>
+        <li>Attendance Report Updated</li>
+        <li>Class Canceled</li>
+    </ul>
+</div>
+
+
+
+    <script src="/static/js/faculty_dashboard.js"></script>
+</body>
+</html>

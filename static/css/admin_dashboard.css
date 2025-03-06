@@ -1,0 +1,798 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Body and Background */
+body {
+    background-color: #f4f7fc;
+    cursor: default;
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(145deg, #404565, #375a7f); /* Gradient for depth */
+    color: #ffffff;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1); /* Soft shadow on sidebar */
+}
+
+.profile-section {
+    text-align: center;
+   margin-bottom: 0px;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 10px;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for profile image */
+}
+
+
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    flex-grow: 1; /* Fills the remaining space */
+    cursor: pointer;
+}
+
+.nav-links li {
+    margin: 20px 0;
+}
+
+/* Update for white text */
+.nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #ffffff; /* Changed text color to white */
+    font-weight: 500;
+    position: relative; /* Make the parent relative for the child absolute positioning */
+}
+
+
+.nav-link:hover {
+    background-color: #526187;
+    border-radius: 8px;
+    transform: translateX(5px);
+}
+
+.nav-link.active {
+    transform: none; 
+}
+
+.nav-link span {
+    font-size: 18px;
+}
+
+/* Main content styles */
+.main-content {
+    margin-left: 260px;
+    padding: 40px;
+    flex-grow: 1;
+    background-color: #ffffff;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+/* Section Headings */
+.section h1 {
+    color: #375a7f;
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0e4ec;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+    }
+    .main-content {
+        margin-left: 220px;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 180px;
+    }
+    .main-content {
+        margin-left: 180px;
+    }
+}
+
+
+/*Dashboard second line*/
+/* General Styles for Extra Sections */
+.dashboard-extra {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.extra-section {
+    width: 48%; /* Ensure each extra-section takes up about half the width */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    padding: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    align-items: center; 
+     text-align: center;
+}
+
+
+
+/* Icon Style for Notice and Assignments */
+.extra-section i {
+    font-size: 25px;
+   margin-bottom: 5px;
+    
+    color: #333; /* Default icon color */
+}
+
+.extra-section h3 {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+/* List Styles */
+.extra-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.extra-section ul li {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+
+/* Hover Effects for Notice Updates Card */
+.extra-section:hover {
+    transform: translateY(-5px);
+    border-color: #1E90FF; /* Dodger Blue border on hover */
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Dodger Blue shadow effect */
+}
+
+
+
+
+
+
+
+/*Dashboard first line*/ 
+/* Main Content */
+.main-content {
+    padding: 20px;
+}
+
+/* Section Header */
+.section h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+
+
+
+/*new*/
+
+/* Card Section */
+.card-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* General Card Style */
+.card {
+    cursor: pointer;
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+}
+
+/* Card Icon Style */
+.card i {
+    font-size: 25px; /* Increased size for icons */
+    margin-bottom: 5px; /* Increase bottom margin for spacing */
+    color: #333; /* Default icon color */
+}
+
+/* Card Title */
+.card h3 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #333; /* Default title color */
+}
+
+/* Card Content */
+.card p {
+    font-size: 18px;
+    color: #555; /* Default text color */
+}
+
+/* Hover Effects */
+.card.green:hover {
+    transform: translateY(-5px);
+    border-color: #1E90FF; /* Dodger Blue border on hover */
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Dodger Blue shadow effect */
+}
+
+.card.pink:hover {
+    transform: translateY(-5px);
+    border-color: #1E90FF; /* Dodger Blue border on hover */
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Dodger Blue shadow effect */
+}
+
+.card.blue:hover {
+    transform: translateY(-5px);
+    color: black;
+    border-color: #1E90FF; /* Dodger Blue border on hover */
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); /* Dodger Blue shadow effect */
+}
+
+
+
+/* Horizontal Line Divider */
+.divider {
+    border: none; /* Remove default border */
+    height: 1px; /* Set height of the line */
+    background-color: #ccc; /* Line color */
+    margin: 5px 0; /* Add spacing above and below the line */
+    width: 100%; /* Full width of the container */
+}
+
+/*logout*/
+/* Logout Icon */
+.logout-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer; /* Add cursor pointer for interactivity */
+}
+
+/* Dropdown Menu Styling */
+.logout-dropdown {
+    position: absolute;
+    top: 50px; /* Position it below the icon */
+    right: 0; /* Align the dropdown with the right side */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    display: none; /* Initially hidden */
+    z-index: 1000;
+    width: 150px; /* Adjust the width as needed */
+}
+
+.logout-dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.logout-dropdown li {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+   
+}
+
+.logout-dropdown li:last-child {
+    border-bottom: none;
+}
+
+.logout-dropdown li a {
+    text-decoration: none;
+    color: #34495e;
+    display: block;
+}
+
+.logout-dropdown li:hover {
+    background-color: #f4f7fc;
+}
+
+/* Show Dropdown */
+.show-dropdown {
+    display: block;
+}
+
+
+/*notification icon*/
+
+/* Notification Icon */
+.notification-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    padding-right: 40px;
+    color: black; /* Icon color */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.notification-icon:hover {
+    color: #007BFF; /* Darker color on hover */
+}
+
+/* Sidebar for notifications */
+.notification-sidebar {
+    position: fixed; /* Fixed position */
+    top: 0; /* Stick to top */
+    right: -300px; /* Hidden off-screen */
+    width: 300px; /* Width of the sidebar */
+    height: 100%; /* Full height */
+    background-color: #ffffff; /* White background */
+    border-left: 1px solid #ddd; /* Subtle left border */
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    transition: right 0.3s ease; /* Smooth transition */
+    z-index: 1000;
+    padding: 20px; /* Padding for spacing */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Arrange children in a column */
+    justify-content: space-between; /* Space items evenly */
+}
+
+/* Show sidebar when active */
+.notification-sidebar.active {
+    right: 0; /* Move into view */
+}
+
+/* Sidebar title */
+.notification-sidebar h4 {
+    font-family: 'Arial', sans-serif; /* Clean font */
+    font-size: 1.5em; /* Larger title */
+    margin-bottom: 15px; /* Space below title */
+    color: #333; /* Darker color for title */
+}
+
+/* Divider */
+.notification-sidebar .divider {
+    margin: 10px 0; /* Margin for spacing */
+    border: none; /* Remove default border */
+    height: 2px; /* Height of divider */
+    background-color: #4A90E2; /* Divider color */
+}
+
+/* Notification list */
+.notification-sidebar ul {
+    list-style-type: none; /* No bullets */
+    padding: 0; /* Reset padding */
+    flex-grow: 1; /* Allow the list to grow */
+}
+
+/* Notification items */
+.notification-sidebar ul li {
+    padding: 10px 0; /* Padding for list items */
+    border-bottom: 1px solid #ddd; /* Subtle border between items */
+    color: #555; /* Text color */
+    transition: background 0.3s ease; /* Smooth background transition */
+}
+
+/* Hover effect for notification items */
+.notification-sidebar ul li:hover {
+    background-color: #e8f4fd; /* Light background on hover */
+    color: #333; /* Darker text on hover */
+}
+/* Faculty Management Layout */
+.faculty-management-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.course-dropdowns {
+    width: 30%;
+    padding-right: 20px;
+}
+
+.course-content {
+    width: 65%;
+    padding-left: 20px;
+}
+
+/* Vertical Line Between Options and Content */
+.vertical-line {
+    width: 1px;
+    background-color: #ccc;
+    height: 100%;
+}
+
+/* Styling the Dropdown Lists */
+.course-list {
+    list-style: none;
+    padding: 0;
+}
+
+.course-list li {
+    margin-bottom: 15px;
+}
+
+.dropdown-content {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 5px;
+    border-left: 1px solid #ccc;
+    margin-left: 10px;
+}
+
+.dropdown-content li {
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e0e0e0; /* Line between options */
+}
+
+.dropdown-content li span {
+    font-size: 16px;
+    color: #333;
+    padding: 5px 0;
+    display: block;
+}
+
+.dropdown span {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.dropdown span:hover {
+    text-decoration: underline;
+}
+
+/* Styling the Course Content */
+.course-section {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.course-section h2 {
+    font-size: 22px;
+    color: #333;
+}
+
+.course-section p {
+    font-size: 16px;
+    color: #555;
+}
+/* Icons Container for Plus and Delete */
+.icons-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.icon-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.icon-dropdown i {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+    border: 1px solid #ddd;
+    width: 150px;
+}
+
+.dropdown-options p {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-options p:hover {
+    background-color: #f1f1f1;
+}
+
+/* Delete Icon */
+.icons-container i.fa-trash {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    color: red;
+}
+
+/* Table Styling */
+.faculty-table-container {
+    margin-top: 20px;
+}
+
+.faculty-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #ffffff; /* Set background color to white */
+    color: #333; /* Text color for readability */
+}
+
+.faculty-table th, .faculty-table td {
+    border: 1px solid #ddd; /* Light border color */
+    padding: 10px;
+    text-align: left;
+}
+
+.faculty-table th {
+    background-color: #f4f7fc; /* Lighter background for headers */
+    color: #333; /* Header text color */
+}
+
+.faculty-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternating row colors for better readability */
+}
+
+.faculty-table tr:hover {
+    background-color: #f0f0f0; /* Hover effect for rows */
+}
+
+/* Sidebar container */
+.sidebar {
+    background-color: #f8f9fa;
+    width: 250px;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    margin-bottom: 20px;
+}
+
+/* Navigation items */
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-text {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Chevron icon */
+.nav-link i {
+    color: #888;
+    font-size: 14px;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    list-style: none;
+    padding: 10px;
+    padding-left: 20px;
+    display: none; /* Hidden by default */
+    background-color: #f1f1f1;
+    border-left: 2px solid #00796b;
+}
+
+.dropdown-content li {
+    padding: 5px 0;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+.dropdown-content li:hover {
+    color: #00796b;
+}
+
+/* Hover and active state */
+.nav-item:hover .nav-text {
+    font-weight: 600;
+    color: #00796b;
+}
+
+.nav-item:hover .dropdown-content {
+    display: block;
+}
+/* Container and Section Styling */
+.student-management-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.course-dropdowns, .course-content {
+    width: 48%;
+}
+
+h1, h2, h3 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+p {
+    font-family: 'Arial', sans-serif;
+    color: #555;
+}
+
+/* Dropdown Styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.dropdown-content li {
+    padding: 8px 12px;
+    list-style: none;
+    cursor: pointer;
+}
+
+.dropdown-content li:hover {
+    background-color: #f1f1f1;
+}
+
+/* Vertical Line */
+.vertical-line {
+    width: 1px;
+    background-color: #ccc;
+    height: 400px;
+}
+
+/* Table Styling */
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.student-table th, .student-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.student-table th {
+    background-color: #ded9f6; /* Use the pastel theme color */
+    color: #333;
+}
+
+.student-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.student-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Icon Styling */
+.icons-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.fa {
+    font-size: 20px;
+    color: #8058ac;
+    cursor: pointer;
+}
+
+.icon-dropdown {
+    position: relative;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    z-index: 2;
+}
+
+.dropdown-options li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-options li:hover {
+    background-color: #f1f1f1;
+}
+
+/* Active/Visible Classes */
+.show {
+    display: block !important;
+}
+
+/* Additional Styling */
+.course-section {
+    display: none;
+}
+
+.course-list li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.course-list li:hover {
+    background-color: #ded9f6;
+}

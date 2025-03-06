@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARIDWAR UNIVERSITY</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <h1 class="logo">HARIDWAR UNIVERSITY</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Placement</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="login">
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to HARIDWAR UNIVERSITY</h2>
+            <p>Empowering the future with top-notch education and research excellence.</p>
+        </div>
+    </section>
+
+    <section class="cards-section">
+        <div class="card">
+            <h3>ABOUT</h3>
+            <p>Our institution provides the highest quality education and fosters a learning environment for students' all-around development.</p>
+        </div>
+        <div class="card">
+            <h3>COURSES</h3>
+            <p>Explore a variety of undergraduate and postgraduate programs designed to meet the highest academic standards.</p>
+        </div>
+        <div class="card">
+            <h3>PLACEMENT</h3>
+            <p>We partner with top companies to provide excellent placement opportunities and career guidance to students.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 HARIDWAR UNIVERSITY. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+</body>
+
+</html>

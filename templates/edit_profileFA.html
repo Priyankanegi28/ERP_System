@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin/Faculty Profile Page</title>
+    <link rel="stylesheet" href="/static/css/edit_profileFA.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Card -->
+        <div class="card profile-card">
+            <img src="/static/images/find_user.png" alt="Profile Picture" class="profile-img">
+            <div class="profile-info">
+                <h2>John Doe</h2>
+                <p>johndoe@gmail.com</p>
+                <p>Administrator</p>
+                
+            </div>
+        </div>
+
+        <!-- Personal Details Card -->
+        <div class="card">
+            <div class="card-header personal-header">
+                <h3>Personal Details</h3>
+            </div>
+            <div class="card-content">
+                <div class="input-row">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="John Doe">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="johndoe@gmail.com">
+                </div>
+                <div class="input-row">
+                    <label for="father-name">Father's Name</label>
+                    <input type="text" id="father-name" placeholder="John Sr. Doe">
+                    <label for="mother-name">Mother's Name</label>
+                    <input type="text" id="mother-name" placeholder="Jane Doe">
+                </div>
+                <div class="input-row">
+                    <label for="gender">Gender</label>
+                    <input type="text" id="gender" placeholder="Male">
+                    <label for="adhar">Adhar Number</label>
+                    <input type="text" id="adhar" placeholder="1234-5678-9101">
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Details Card -->
+        <div class="card">
+            <div class="card-header contact-header">
+                <h3>Contact Details</h3>
+                <button class="edit-btn" onclick="enableEdit()">Edit</button>
+            </div>
+            <div class="card-content">
+                <div class="input-row">
+                    <label for="hosteller">Hosteller/Day Scholar</label>
+                    <input type="text" id="hosteller" placeholder="Day Scholar" disabled>
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" placeholder="(213) 555-1234" disabled>
+                </div>
+                <div class="input-row">
+                    <label for="parent-phone">Parent's Phone Number</label>
+                    <input type="text" id="parent-phone" placeholder="(213) 555-4321" disabled>
+                    <label for="address">Address</label>
+                    <input type="text" id="address" placeholder="1234 Elm St, New York" disabled>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profession Details Card -->
+        <div class="card">
+            <div class="card-header profession-header">
+                <h3>Profession Details</h3>
+            </div>
+            <div class="card-content">
+                <div class="input-row">
+                    <label for="position">Position</label>
+                    <input type="text" id="position" placeholder="Administrator">
+                    <label for="department">Department</label>
+                    <input type="text" id="department" placeholder="Admin Department">
+                </div>
+                <div class="input-row">
+                    <label for="date-of-joining">Date of Joining</label>
+                    <input type="text" id="date-of-joining" placeholder="01-Jan-2020">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function enableEdit() {
+            // Enable contact details inputs
+            document.getElementById('hosteller').disabled = false;
+            document.getElementById('phone').disabled = false;
+            document.getElementById('parent-phone').disabled = false;
+            document.getElementById('address').disabled = false;
+        }
+    </script>
+</body>
+</html>

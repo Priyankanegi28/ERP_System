@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/admin_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="profile-section">
+                <img src="admin_profile.png" alt="Profile Picture" class="profile-img">
+                <h2>Admin Name</h2>
+            </div>
+            <ul class="nav-links">
+                <li><div class="nav-link " onclick="showSection('dashboard')"></i><span>Dashboard</span></div></li>
+                <li><div class="nav-link" onclick="showSection('faculty-management')"><span>Faculty Management</span></div></li>
+                <li><div class="nav-link" onclick="showSection('student-management')"><span>Student Management</span></div></li>
+                <li><div class="nav-link" onclick="showSection('course-management')"><span>Course Management</span></div></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section">
+                <h1>Welcome to the Dashboard</h1>
+                <!-- Cards on the Dashboard -->
+                <div class="card-section">
+                    <div class="card blue">
+                        <i class="fas fa-chalkboard"></i>
+                        <h3>Manage Classes</h3>
+                        <hr class="divider">
+                        <p>Overview of class schedules</p>
+                    </div>
+                    <div class="card green">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Manage Attendance</h3>
+                        <hr class="divider">
+                        <p>Mark and track student attendance</p>
+                    </div>
+                    <div class="card pink">
+                        <i class="fas fa-tasks"></i>
+                        <h3>Assignments</h3>
+                        <hr class="divider">
+                        <p>Create, assign, and review homework</p>
+                    </div>
+                </div>
+
+                <!-- Notice and Upcoming Assignments -->
+                <div class="dashboard-extra">
+                    <div class="extra-section">
+                        <i class="fas fa-bell"></i>
+                        <h3>Recent Notifications</h3>
+                        <hr class="divider">
+                        <ul class="notice-updates">
+                            <li>New Assignment Submitted</li>
+                            <li>Attendance Report Updated</li>
+                            <li>Class Canceled</li>
+                        </ul>
+                    </div>
+                    <div class="extra-section">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Recent Activities</h3>
+                        <hr class="divider">
+                        <ul>
+                            <li>Graded 5 Assignments</li>
+                            <li>Updated Class Schedule</li>
+                            <li>Sent Feedback</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Management Section -->
+    <div id="faculty-management" class="section" style="display:none;">
+        <h1>Faculty Management</h1>
+        <p>Manage faculty details and performance.</p>
+
+        <div class="faculty-management-container">
+            <!-- Left: Course Dropdowns -->
+            <div class="course-dropdowns">
+                <h3>Courses</h3>
+                <ul class="course-list">
+                    <li>
+                        <div class="dropdown">
+                            <span onclick="toggleDropdown('technology-dropdown')">Technology</span>
+                            <ul id="technology-dropdown" class="dropdown-content">
+                                <li><span onclick="showCourse('btech')">BTech</span></li>
+                                <li><span onclick="showCourse('bca')">BCA</span></li>
+                                <li><span onclick="showCourse('pharmacy')">Pharmacy</span></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown">
+                            <span onclick="toggleDropdown('management-dropdown')">Management</span>
+                            <ul id="management-dropdown" class="dropdown-content">
+                                <li><span onclick="showCourse('bba')">BBA</span></li>
+                                <li><span onclick="showCourse('bsc')">BSc</span></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Vertical Line -->
+            <div class="vertical-line"></div>
+
+            <!-- Right: Course Content Sections -->
+            <div class="course-content">
+                <!-- BTech Section (Existing) -->
+                <div id="btech" class="course-section" style="display:none;">
+                    <h2>BTech Faculty Management</h2>
+                    <p>Details of BTech faculty go here.</p>
+                    <!-- Icons for Add and Delete -->
+                    <div class="icons-container">
+                        <div class="icon-dropdown">
+                            <i class="fa fa-plus" onclick="toggleIconDropdown('add-dropdown')"></i>
+                            <ul id="add-dropdown" class="dropdown-options">
+                                <li onclick="addFaculty()">Add Faculty</li>
+                                <li onclick="uploadSheet()">Upload Sheet</li>
+                            </ul>
+                        </div>
+                        <i class="fa fa-trash" onclick="deleteFaculty()"></i>
+                    </div>
+                    <!-- Table for Faculty Details -->
+                    <div class="faculty-table-container">
+                        <table class="faculty-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Date of Joining</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>101</td>
+                                    <td>John Doe</td>
+                                    <td>Computer Science</td>
+                                    <td>2021-01-15</td>
+                                    <td>123-456-7890</td>
+                                    <td>johndoe@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td>102</td>
+                                    <td>Jane Smith</td>
+                                    <td>Electrical Engineering</td>
+                                    <td>2020-05-10</td>
+                                    <td>987-654-3210</td>
+                                    <td>janesmith@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- BCA Section (New) -->
+                <div id="bca" class="course-section" style="display:none;">
+                    <h2>BCA Faculty Management</h2>
+                    <p>Details of BCA faculty go here.</p>
+                    <!-- Icons for Add and Delete -->
+                    <div class="icons-container">
+                        <div class="icon-dropdown">
+                            <i class="fa fa-plus" onclick="toggleIconDropdown('add-dropdown')"></i>
+                            <ul id="add-dropdown" class="dropdown-options">
+                                <li onclick="addFaculty()">Add Faculty</li>
+                                <li onclick="uploadSheet()">Upload Sheet</li>
+                            </ul>
+                        </div>
+                        <i class="fa fa-trash" onclick="deleteFaculty()"></i>
+                    </div>
+                    <!-- Table for Faculty Details -->
+                    <div class="faculty-table-container">
+                        <table class="faculty-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Date of Joining</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>103</td>
+                                    <td>Michael Brown</td>
+                                    <td>Computer Applications</td>
+                                    <td>2019-06-15</td>
+                                    <td>321-654-9870</td>
+                                    <td>michaelbrown@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td>104</td>
+                                    <td>Emily Davis</td>
+                                    <td>Information Technology</td>
+                                    <td>2021-11-10</td>
+                                    <td>654-321-7890</td>
+                                    <td>emilydavis@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pharmacy Section (New) -->
+                <div id="pharmacy" class="course-section" style="display:none;">
+                    <h2>Pharmacy Faculty Management</h2>
+                    <p>Details of Pharmacy faculty go here.</p>
+                    <!-- Icons for Add and Delete -->
+                    <div class="icons-container">
+                        <div class="icon-dropdown">
+                            <i class="fa fa-plus" onclick="toggleIconDropdown('add-dropdown')"></i>
+                            <ul id="add-dropdown" class="dropdown-options">
+                                <li onclick="addFaculty()">Add Faculty</li>
+                                <li onclick="uploadSheet()">Upload Sheet</li>
+                            </ul>
+                        </div>
+                        <i class="fa fa-trash" onclick="deleteFaculty()"></i>
+                    </div>
+                    <!-- Table for Faculty Details -->
+                    <div class="faculty-table-container">
+                        <table class="faculty-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Date of Joining</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>105</td>
+                                    <td>John Lee</td>
+                                    <td>Pharmaceutical Sciences</td>
+                                    <td>2020-02-22</td>
+                                    <td>789-123-4567</td>
+                                    <td>johnlee@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td>106</td>
+                                    <td>Sarah Adams</td>
+                                    <td>Pharmacy Practice</td>
+                                    <td>2019-07-13</td>
+                                    <td>123-789-4560</td>
+                                    <td>sarahadams@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- BBA Section (New) -->
+                <div id="bba" class="course-section" style="display:none;">
+                    <h2>BBA Faculty Management</h2>
+                    <p>Details of BBA faculty go here.</p>
+                    <!-- Icons for Add and Delete -->
+                    <div class="icons-container">
+                        <div class="icon-dropdown">
+                            <i class="fa fa-plus" onclick="toggleIconDropdown('add-dropdown')"></i>
+                            <ul id="add-dropdown" class="dropdown-options">
+                                <li onclick="addFaculty()">Add Faculty</li>
+                                <li onclick="uploadSheet()">Upload Sheet</li>
+                            </ul>
+                        </div>
+                        <i class="fa fa-trash" onclick="deleteFaculty()"></i>
+                    </div>
+                    <!-- Table for Faculty Details -->
+                    <div class="faculty-table-container">
+                        <table class="faculty-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Date of Joining</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>107</td>
+                                    <td>Alice Johnson</td>
+                                    <td>Business Administration</td>
+                                    <td>2018-04-10</td>
+                                    <td>456-789-1230</td>
+                                    <td>alicejohnson@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td>108</td>
+                                    <td>David Wilson</td>
+                                    <td>Management</td>
+                                    <td>2021-09-05</td>
+                                    <td>654-987-3210</td>
+                                    <td>davidwilson@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- BSc Section (New) -->
+                <div id="bsc" class="course-section" style="display:none;">
+                    <h2>BSc Faculty Management</h2>
+                    <p>Details of BSc faculty go here.</p>
+                    <!-- Icons for Add and Delete -->
+                    <div class="icons-container">
+                        <div class="icon-dropdown">
+                            <i class="fa fa-plus" onclick="toggleIconDropdown('add-dropdown')"></i>
+                            <ul id="add-dropdown" class="dropdown-options">
+                                <li onclick="addFaculty()">Add Faculty</li>
+                                <li onclick="uploadSheet()">Upload Sheet</li>
+                            </ul>
+                        </div>
+                        <i class="fa fa-trash" onclick="deleteFaculty()"></i>
+                    </div>
+                    <!-- Table for Faculty Details -->
+                    <div class="faculty-table-container">
+                        <table class="faculty-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Date of Joining</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>109</td>
+                                    <td>Eva Turner</td>
+                                    <td>Biological Sciences</td>
+                                    <td>2021-01-10</td>
+                                    <td>123-987-6540</td>
+                                    <td>evaturner@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td>110</td>
+                                    <td>Michael Carter</td>
+                                    <td>Physics</td>
+                                    <td>2020-03-05</td>
+                                    <td>987-123-6540</td>
+                                    <td>michaelcarter@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+    <!-- Student Management Section -->
+    <div id="student-management" class="section" style="display:none;">
+        <h1>Student Management</h1>
+        <p>Manage student details and performance.</p>
+
+        <div class="student-management-container">
+            <!-- Left: Course Dropdowns -->
+            <div class="course-dropdowns">
+                <h3>Courses</h3>
+                <ul class="course-list">
+                    <li>
+                        <div class="dropdown">
+                            <span onclick="toggleDropdown('student-technology-dropdown')">Technology</span>
+                            <ul id="student-technology-dropdown" class="dropdown-content">
+                                <li><span onclick="showCourse('student-btech')">BTech</span></li>
+                                <li><span onclick="showCourse('student-bca')">BCA</span></li>
+                                <li><span onclick="showCourse('student-pharmacy')">Pharmacy</span></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown">
+                            <span onclick="toggleDropdown('student-management-dropdown')">Management</span>
+                            <ul id="student-management-dropdown" class="dropdown-content">
+                                <li><span onclick="showCourse('student-bba')">BBA</span></li>
+                                <li><span onclick="showCourse('student-bsc')">BSc</span></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Vertical Line -->
+            <div class="vertical-line"></div>
+
+            <!-- Right: Course Content Sections -->
+            <div class="course-content">
+                <!-- BTech Section (Student) -->
+                <div id="student-btech" class="course-section" style="display:none;">
+                    <h2>BTech Student Management</h2>
+                    <p>Details of BTech students go here.</p>
+                    <!-- Icons for Add and Delete -->
+                    <div class="icons-container">
+                        <div class="icon-dropdown">
+                            <i class="fa fa-plus" onclick="toggleIconDropdown('student-add-dropdown')"></i>
+                            <ul id="student-add-dropdown" class="dropdown-options">
+                                <li onclick="addStudent()">Add Student</li>
+                                <li onclick="uploadStudentSheet()">Upload Sheet</li>
+                            </ul>
+                        </div>
+                        <i class="fa fa-trash" onclick="deleteStudent()"></i>
+                    </div>
+                    <!-- Table for Student Details -->
+                    <div class="student-table-container">
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Date of Enrollment</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>201</td>
+                                    <td>Mark Taylor</td>
+                                    <td>Computer Science</td>
+                                    <td>2022-07-20</td>
+                                    <td>123-456-7891</td>
+                                    <td>marktaylor@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td>202</td>
+                                    <td>Linda White</td>
+                                    <td>Electrical Engineering</td>
+                                    <td>2021-09-10</td>
+                                    <td>987-654-3212</td>
+                                    <td>lindawhite@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- BCA Section (Student) -->
+                <div id="student-bca" class="course-section" style="display:none;">
+                    <h2>BCA Student Management</h2>
+                    <p>Details of BCA students go here.</p>
+                    <!-- Icons for Add and Delete -->
+                    <div class="icons-container">
+                        <div class="icon-dropdown">
+                            <i class="fa fa-plus" onclick="toggleIconDropdown('student-add-dropdown')"></i>
+                            <ul id="student-add-dropdown" class="dropdown-options">
+                                <li onclick="addStudent()">Add Student</li>
+                                <li onclick="uploadStudentSheet()">Upload Sheet</li>
+                            </ul>
+                        </div>
+                        <i class="fa fa-trash" onclick="deleteStudent()"></i>
+                    </div>
+                    <!-- Table for Student Details -->
+                    <div class="student-table-container">
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Date of Enrollment</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>203</td>
+                                    <td>Chris Evans</td>
+                                    <td>Computer Applications</td>
+                                    <td>2020-05-18</td>
+                                    <td>654-987-1234</td>
+                                    <td>chrisevans@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td>204</td>
+                                    <td>Susan Brown</td>
+                                    <td>Information Technology</td>
+                                    <td>2022-03-22</td>
+                                    <td>321-654-9876</td>
+                                    <td>susanbrown@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pharmacy Section (Student) -->
+                <div id="student-pharmacy" class="course-section" style="display:none;">
+                    <h2>Pharmacy Student Management</h2>
+                    <p>Details of Pharmacy students go here.</p>
+                    <!-- Icons for Add and Delete -->
+                    <div class="icons-container">
+                        <div class="icon-dropdown">
+                            <i class="fa fa-plus" onclick="toggleIconDropdown('student-add-dropdown')"></i>
+                            <ul id="student-add-dropdown" class="dropdown-options">
+                                <li onclick="addStudent()">Add Student</li>
+                                <li onclick="uploadStudentSheet()">Upload Sheet</li>
+                            </ul>
+                        </div>
+                        <i class="fa fa-trash" onclick="deleteStudent()"></i>
+                    </div>
+                    <!-- Table for Student Details -->
+                    <div class="student-table-container">
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Date of Enrollment</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>205</td>
+                                    <td>Tom Hanks</td>
+                                    <td>Pharmaceutical Sciences</td>
+                                    <td>2021-02-25</td>
+                                    <td>789-123-6543</td>
+                                    <td>tomhanks@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td>206</td>
+                                    <td>Anna Watson</td>
+                                    <td>Pharmacy Practice</td>
+                                    <td>2020-09-30</td>
+                                    <td>123-789-6543</td>
+                                    <td>annawatson@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- BBA Section (Student) -->
+                <div id="student-bba" class="course-section" style="display:none;">
+                    <h2>BBA Student Management</h2>
+                    <p>Details of BBA students go here.</p>
+                    <!-- Icons for Add and Delete -->
+                    <div class="icons-container">
+                        <div class="icon-dropdown">
+                            <i class="fa fa-plus" onclick="toggleIconDropdown('student-add-dropdown')"></i>
+                            <ul id="student-add-dropdown" class="dropdown-options">
+                                <li onclick="addStudent()">Add Student</li>
+                                <li onclick="uploadStudentSheet()">Upload Sheet</li>
+                            </ul>
+                        </div>
+                        <i class="fa fa-trash" onclick="deleteStudent()"></i>
+                    </div>
+                    <!-- Table for Student Details -->
+                    <div class="student-table-container">
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Date of Enrollment</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>207</td>
+                                    <td>Jake Johnson</td>
+                                    <td>Business Administration</td>
+                                    <td>2019-10-11</td>
+                                    <td>456-789-3214</td>
+                                    <td>jakejohnson@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td>208</td>
+                                    <td>Emma Roberts</td>
+                                    <td>Management</td>
+                                    <td>2022-01-20</td>
+                                    <td>987-321-6540</td>
+                                    <td>emmaroberts@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- BSc Section (Student) -->
+                <div id="student-bsc" class="course-section" style="display:none;">
+                    <h2>BSc Student Management</h2>
+                    <p>Details of BSc students go here.</p>
+                    <!-- Icons for Add and Delete -->
+                    <div class="icons-container">
+                        <div class="icon-dropdown">
+                            <i class="fa fa-plus" onclick="toggleIconDropdown('student-add-dropdown')"></i>
+                            <ul id="student-add-dropdown" class="dropdown-options">
+                                <li onclick="addStudent()">Add Student</li>
+                                <li onclick="uploadStudentSheet()">Upload Sheet</li>
+                            </ul>
+                        </div>
+                        <i class="fa fa-trash" onclick="deleteStudent()"></i>
+                    </div>
+                    <!-- Table for Student Details -->
+                    <div class="student-table-container">
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Date of Enrollment</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>209</td>
+                                    <td>Michael Scott</td>
+                                    <td>Environmental Science</td>
+                                    <td>2020-06-12</td>
+                                    <td>852-963-7410</td>
+                                    <td>michaelscott@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td>210</td>
+                                    <td>Rachel Green</td>
+                                    <td>Physics</td>
+                                    <td>2022-04-18</td>
+                                    <td>963-741-8520</td>
+                                    <td>rachelgreen@example.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Logout Section -->
+<div class="logout-section">
+    <i id="notification-btn" class="notification-icon fas fa-bell" onclick="toggleNotificationSidebar()"></i>
+    <i id="logout-btn" class="logout-icon fas fa-user-circle" onclick="toggleLogoutDropdown()"></i>
+
+    <!-- Logout Dropdown -->
+    <div id="logout-dropdown" class="logout-dropdown">
+        <ul>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Notification Sidebar -->
+<div id="notification-sidebar" class="notification-sidebar">
+    <h4>Notifications</h4>
+    <hr class="divider">
+    <ul>
+        <li>New Assignment Submitted</li>
+        <li>Attendance Report Updated</li>
+        <li>Class Canceled</li>
+    </ul>
+</div>
+
+    <script src="/static/js/admin_dashboard.js"></script>
+</body>
+</html>
